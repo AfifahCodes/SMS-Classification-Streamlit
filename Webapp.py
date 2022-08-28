@@ -2,7 +2,9 @@ import streamlit as st
 import numpy as np
 import pandas as pd
 import re
-import nltk
+import nltk 
+nltk.download('wordnet')
+nltk.download("popular")
 import spacy
 import string
 #Reading Data
