@@ -3,8 +3,8 @@ import numpy as np
 import pandas as pd
 import re
 import nltk 
-nltk.download('wordnet')
-nltk.download("popular")
+# nltk.download('wordnet')
+# nltk.download("popular")
 import spacy
 import string
 #Reading Data
@@ -129,10 +129,17 @@ def main():
                 st.pyplot(plt)
             
         with column2:
-            count = df.groupby('Date_Received')['Message_body'].count()
-            sorted_count = count.sort_values(ascending = False)
-            sorted_top = sorted_count.head(500)
-            st.line_chart(sorted_top)
+            if Label == 'Spam':
+                count = Spam.groupby('Date_Received')['Message_body'].count()
+                sorted_count = count.sort_values(ascending = False)
+                sorted_top = sorted_count.head(500)
+                st.line_chart(sorted_top)
+            else:
+                count = NonSpam.groupby('Date_Received')['Message_body'].count()
+                sorted_count = count.sort_values(ascending = False)
+                sorted_top = sorted_count.head(500)
+                st.line_chart(sorted_top)
+
 
     #st.table(data =filtered)
 if __name__ == "__main__":
